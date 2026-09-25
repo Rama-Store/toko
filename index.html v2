@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rama Store</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#09090f;
+  color:white;
+  line-height:1.5;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:18px;
+}
+
+.header{
+  background:linear-gradient(135deg,#17172b,#0d0d16);
+  border:1px solid #303047;
+  border-radius:24px;
+  padding:30px 20px;
+  text-align:center;
+  box-shadow:0 10px 35px rgba(0,0,0,.5);
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  margin:auto;
+  margin-bottom:14px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#ff1744,#ff7900);
+  font-size:28px;
+  font-weight:bold;
+  box-shadow:0 0 30px rgba(255,23,68,.5);
+}
+
+h1{
+  font-size:16px;
+}
+
+.subtitle{
+  color:#bfc0d4;
+  margin-top:5px;
+}
+
+.whatsapp{
+  display:inline-block;
+  margin-top:18px;
+  padding:12px 22px;
+  border-radius:12px;
+  background:#19c463;
+  font-weight:bold;
+}
+
+.section{
+  margin-top:25px;
+}
+
+.section h2{
+  margin-bottom:13px;
+  font-size:21px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.card{
+  background:#11111b;
+  border:1px solid #29293d;
+  border-radius:18px;
+  padding:18px;
+}
+
+.icon{
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.card h3{
+  font-size:18px;
+}
+
+.card p{
+  color:#aeb0c2;
+  font-size:13px;
+  margin:5px 0 14px;
+}
+
+.buy{
+  display:block;
+  text-align:center;
+  background:linear-gradient(90deg,#ff1744,#ff5a36);
+  padding:10px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.payment{
+  background:#11111b;
+  border:1px solid #29293d;
+  border-radius:18px;
+  padding:18px;
+  color:#fff;
+}
+
+.footer{
+  text-align:center;
+  color:#85879b;
+  font-size:12px;
+  padding:30px 0 10px;
+}
+
+@media(max-width:560px){
+  h1{
+    font-size:28px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.price-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid transparent;
+  background:transparent;
+  color:#eae0c2;
+  font:inherit;
+  font-size:13px;
+  text-align:left;
+  padding:10px 14px;
+  margin:3px 0;
+  border-radius:9px;
+  cursor:pointer;
+  transition:.2s;
+}
+.price-item:hover{
+  background:#1c1c2b;
+  border-color:#ff1744;
+  color:#fff;
+}
+.price-item:active{
+  transform:scale(.99);
+}
+
+</style>
+
+<style>
+.order-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.72);
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+.order-modal.show{display:flex}
+.order-box{
+  width:100%;
+  max-width:420px;
+  background:#11111b;
+  border:1px solid #303047;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 15px 45px rgba(0,0,0,.65);
+  position:relative;
+}
+.order-box h2{font-size:21px;margin-bottom:6px}
+.order-product{color:#bfc0d4;font-size:14px;margin-bottom:18px}
+.order-box label{
+  display:block;
+  color:#eaeaf4;
+  font-size:13px;
+  margin:12px 0 6px;
+}
+.order-box input{
+  width:100%;
+  border:1px solid #303047;
+  background:#09090f;
+  color:#fff;
+  border-radius:10px;
+  padding:12px;
+  outline:none;
+  font-size:14px;
+}
+.order-box input:focus{border-color:#ff1744}
+.order-close{
+  position:absolute;
+  right:12px;
+  top:8px;
+  border:0;
+  background:transparent;
+  color:#aaa;
+  font-size:28px;
+  cursor:pointer;
+}
+.order-send{
+  width:100%;
+  border:0;
+  margin-top:18px;
+  padding:12px;
+  border-radius:10px;
+  background:#19c463;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+
+<div class="logo">
+RS
+</div>
+
+<h1>RAMA STORE</h1>
+
+<p class="subtitle">
+Top Up Game • Pulsa • Token • Jasa Rekber
+</p>
+
+<a class="whatsapp"
+href="https://wa.me/6282337889026?text=Halo%20Rama%20Store,%20saya%20ingin%20order."
+target="_blank">
+💬 ORDER VIA WHATSAPP
+</a>
+
+</header>
+
+
+<section class="section">
+
+<h2>🔥 Produk & Layanan</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🎮</div>
+<h3>Top Up Free Fire</h3>
+<div class="prices">
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 5 - Rp900">💎 5 - Rp900</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 10 - Rp1.700">💎 10 - Rp1.700</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 12 - Rp1.900">💎 12 - Rp1.900</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 15 - Rp2.500">💎 15 - Rp2.500</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 20 - Rp3.400">💎 20 - Rp3.400</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 25 - Rp4.100">💎 25 - Rp4.100</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 30 - Rp5.000">💎 30 - Rp5.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 50 - Rp6.500">💎 50 - Rp6.500</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 70 - Rp9.000">💎 70 - Rp9.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 75 - Rp10.000">💎 75 - Rp10.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 90 - Rp11.900">💎 90 - Rp11.900</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 100 - Rp12.500">💎 100 - Rp12.500</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 120 - Rp14.700">💎 120 - Rp14.700</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 140 - Rp17.100">💎 140 - Rp17.100</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 150 - Rp18.600">💎 150 - Rp18.600</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 180 - Rp23.000">💎 180 - Rp23.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 210 - Rp25.100">💎 210 - Rp25.100</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 250 - Rp31.000">💎 250 - Rp31.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 300 - Rp37.300">💎 300 - Rp37.300</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 355 - Rp43.700">💎 355 - Rp43.700</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 425 - Rp51.300">💎 425 - Rp51.300</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 500 - Rp61.200">💎 500 - Rp61.200</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 720 - Rp89.300">💎 720 - Rp89.300</button>>
+</div>
+
+<a class="buy" href="#" onclick="orderGame('Free Fire'); return false;">
+Beli Sekarang
+</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚔️</div>
+<h3>Top Up Mobile Legends</h3>
+<div class="prices">
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 25+3 - Rp8.500">💎 25+3 - Rp8.500</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 40+4 - Rp13.000">💎 40+4 - Rp13.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 51+5 - Rp17.200">💎 51+5 - Rp17.200</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 78+8 - Rp24.300">💎 78+8 - Rp24.300</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 102+10 - Rp33.000">💎 102+10 - Rp33.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 156+16 - Rp50.200">💎 156+16 - Rp50.200</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 254+30 - Rp82.000">💎 254+30 - Rp82.000</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="💎 367+41 - Rp119.700">💎 367+41 - Rp119.700</button>
+<button type="button" class="price-item" onclick="orderProduct(this)" data-product="1× WDP - Rp30.900">1× WDP - Rp30.900</button>
+</div>
+
+<a class="buy" href="#" onclick="orderGame('Mobile Legends'); return false;">
+Beli Sekarang
+</a>
+</div>
+
+
+<div class="card">
+<div class="icon">📱</div>
+<h3>Pulsa</h3>
+<p>Isi ulang pulsa berbagai operator.</p>
+
+<a class="buy"
+href="https://wa.me/6282337889026?text=Halo%20Rama%20Store,%20saya%20ingin%20membeli%20pulsa."
+target="_blank">
+Beli Sekarang
+</a>
+</div>
+
+
+<div class="card">
+<div class="icon">⚡</div>
+<h3>Token Listrik</h3>
+<p>Token listrik prabayar.</p>
+
+<a class="buy"
+href="https://wa.me/6282337889026?text=Halo%20Rama%20Store,%20saya%20ingin%20membeli%20token%20listrik."
+target="_blank">
+Beli Sekarang
+</a>
+</div>
+
+
+<div class="card">
+<div class="icon">🤝</div>
+<h3>Jasa Rekber</h3>
+<p>Layanan rekening bersama untuk transaksi.</p>
+
+<a class="buy"
+href="https://wa.me/6282337889026?text=Halo%20Rama%20Store,%20saya%20ingin%20menggunakan%20jasa%20rekber."
+target="_blank">
+Beli Sekarang
+</a>
+</div>
+
+
+<div class="card">
+<div class="icon">💬</div>
+<h3>Hubungi Admin</h3>
+<p>Tanyakan produk dan harga kepada admin.</p>
+
+<a class="buy"
+href="https://wa.me/6282337889026?text=Halo%20Admin%20Rama%20Store."
+target="_blank">
+Chat Admin
+</a>
+</div>
+
+</div>
+</section>
+
+
+<section class="section">
+
+<h2>💳 Pembayaran</h2>
+
+<div class="payment">
+Dana • SeaBank • Krom Bank • GoPay
+</div>
+
+</section>
+
+
+<footer class="footer">
+© 2026 Rama Store • Semua hak dilindungi
+</footer>
+
+</div>
+
+
+<script>
+let currentGame = '';
+let currentProduct = '';
+
+function openOrder(game, product){
+  currentGame = game;
+  currentProduct = product;
+
+  document.getElementById('orderTitle').textContent = 'Detail Pesanan';
+  document.getElementById('orderProduct').textContent = game + ' • ' + product;
+  document.getElementById('gameId').value = '';
+  document.getElementById('zoneId').value = '';
+
+  const zoneWrap = document.getElementById('zoneWrap');
+  zoneWrap.style.display = game.toLowerCase().includes('mobile legends') ? 'block' : 'none';
+
+  document.getElementById('orderModal').classList.add('show');
+  document.getElementById('orderModal').setAttribute('aria-hidden','false');
+
+  setTimeout(() => document.getElementById('gameId').focus(), 100);
+}
+
+function closeOrder(){
+  document.getElementById('orderModal').classList.remove('show');
+  document.getElementById('orderModal').setAttribute('aria-hidden','true');
+}
+
+function orderProduct(el){
+  const product = el.dataset.product;
+  const card = el.closest('.card');
+  const game = card ? card.querySelector('h3').textContent.trim() : 'Produk';
+  openOrder(game, product);
+}
+
+function orderGame(game){
+  openOrder(game, 'Top Up');
+}
+
+function sendOrder(){
+  const id = document.getElementById('gameId').value.trim();
+
+  if(!id){
+    alert('Silakan masukkan ID game terlebih dahulu.');
+    document.getElementById('gameId').focus();
+    return;
+  }
+
+  let message = `Halo Rama Store, saya ingin membeli ${currentGame} - ${currentProduct}.\n\n`;
+  message += `🆔 ID: ${id}\n`;
+
+  if(currentGame.toLowerCase().includes('mobile legends')){
+    const zone = document.getElementById('zoneId').value.trim();
+
+    if(!zone){
+      alert('Silakan masukkan Zone ID terlebih dahulu.');
+      document.getElementById('zoneId').focus();
+      return;
+    }
+
+    message += `🌐 ZONE ID: ${zone}\n`;
+  }
+
+  message += `\nMohon info langkah pembayarannya.`;
+
+  window.open(
+    'https://wa.me/6282337889026?text=' + encodeURIComponent(message),
+    '_blank'
+  );
+
+  closeOrder();
+}
+
+document.getElementById('orderModal').addEventListener('click', function(e){
+  if(e.target === this) closeOrder();
+});
+</script>
+
+
+<div id="orderModal" class="order-modal" aria-hidden="true">
+  <div class="order-box">
+    <button class="order-close" type="button" onclick="closeOrder()">×</button>
+    <h2 id="orderTitle">Detail Pesanan</h2>
+    <p id="orderProduct" class="order-product"></p>
+
+    <label for="gameId">ID Game</label>
+    <input id="gameId" type="text" inputmode="numeric" placeholder="Masukkan ID game">
+
+    <div id="zoneWrap" style="display:none;">
+      <label for="zoneId">ZONE ID</label>
+      <input id="zoneId" type="text" inputmode="numeric" placeholder="Masukkan Zone ID">
+    </div>
+
+    <button class="order-send" type="button" onclick="sendOrder()">💬 Lanjut ke WhatsApp</button>
+  </div>
+</div>
+
+</body>
+</html>
